@@ -1,0 +1,228 @@
+<!DOCTYPE html  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<body bgColor="FFFFFF"><html>
+    <title>Custom Library using Simscape Multibody: Link</title>
+    <p> <font color="FF8800" size="4.5">Robot Arm Link</p>
+    <p> <font color="000000" size="2.5">Robot arm link or 
+        simply, the Link block models the links of a manipulator robot. The 
+        link is a rigid body that consists of a middle section, two end plates 
+        (left plate and right plate) and two end connectors (left connector 
+        and right connector). You can use the link to connect joints.<br><br>
+    <img vspace="5" hspace="5" src="LinkParts.png" alt="" width="525" height="224"> <br><br></p>
+    <p> <u><font color="000000" size="4">Ports</u></p>
+    <p> <font color="000000" size="3"><u>L - Left Frame</u></p>
+    <p> <font color="000000" size="2.5">Body frame located at the centroid 
+        of the left-end connector. Use this frame to connect other 
+        components, such as joints.</p>
+    <p> <font color="000000" size="3"><u>R - Right Frame</u></p>
+    <p> <font color="000000" size="2.5">Body frame located at the centroid 
+        of the right-end connector. Use this frame to connect other 
+        components, such as joints.</p>
+    <p> <u><font color="000000" size="4">Parameters</u></p>
+    <p> <font color="FF8800" size="4">Connector configuration</p>
+    <p> <font color="000000" size="3"><u>Left connector configuration</u></p>  
+    <p> <font color="000000" size="2.5">The configuration of the left 
+        connector, specified as <tt>Single bracket</tt>, 
+        <tt>Double bracket with pin</tt>, <tt>Rotating pin</tt>, <tt>Pin socket</tt> 
+        and <tt>No connector</tt>. </p>
+    <p> Connect the end connector of a link to the end connector 
+        of another link using a <b>Revolute Joint</b> in between.<br>
+        <li>You can connect a <tt>Single bracket</tt> of one link
+        to a <tt>Double bracket with pin</tt> of the adjacent link 
+            and vice versa.</li> 
+        <li>You can connect a <tt>Rotating pin</tt> of a link to
+        a <tt>Pin socket</tt> of the adjacent link and vice versa.</li> 
+        <li>You can also select a <tt>No connector</tt> as one end connector. 
+            This configuration of end connector is useful in connecting a 
+            link to an end effector or a gripper.</li></p>
+    <p> <u><font color="000000" size="3">Left bracket orientation</u></p>
+    <p> <font color="000000" size="2.5">To enable this parameter, specify 
+        the <b>Left connector configuration</b> as <tt>Single bracket</tt> 
+        or <tt>Double bracket with pin</tt>. You can select the 
+        <b>Left bracket orientation</b> either to <tt>+X</tt> 
+        or <tt>+Z</tt>. If you set <b>Left bracket orientation</b> to <tt>+X</tt>, 
+        the axis of the bracket hole (for <tt>Single bracket</tt>) or bracket pin 
+        (for <tt>Double bracket with pin</tt>) is oriented in the X-axis direction 
+        of the World Frame.<br><br>
+        <img vspace="5" hspace="5" src="LeftBracketXHelp.png" alt="" width="678" height="254"> <br><br>
+        Similarly, if you set the <b>Left bracket orientation</b> to <tt>+Z</tt>, 
+        the axis of the bracket hole (for <tt>Single bracket</tt>) or bracket pin 
+        (for <tt>Double bracket with pin</tt>) is oriented in the Z-axis 
+        direction of the World Frame.<br><br>
+        <img vspace="5" hspace="5" src="LeftBracketZHelp.png" alt="" width="678" height="254"> <br><br></p>
+    <p> <u><font color="000000" size="3">Right connector configuration</u></p>  
+    <p> <font color="000000" size="2.5">The configuration of the right 
+        connector, specified as <tt>Single bracket</tt>, 
+        <tt>Double bracket with pin</tt>, <tt>Rotating pin</tt>, <tt>Pin socket</tt> 
+        and <tt>No connector</tt>. </p>
+    <p> Connect the end connector of a link to the end connector 
+        of another link using a <b>Revolute Joint</b> in between.<br>
+        <li>You can connect a <tt>Single bracket</tt> of one link
+        to a <tt>Double bracket with pin</tt> of the adjacent link 
+            and vice versa.</li> 
+        <li>You can connect a <tt>Rotating pin</tt> of a link to
+        a <tt>Pin socket</tt> of the adjacent link and vice versa.</li> 
+        <li>You can also select a <tt>No connector</tt> as one end connector. 
+            This configuration of end connector is useful in connecting a 
+            link to an end effector or a gripper.</li></p>
+    <p> <u><font color="000000" size="3">Right bracket orientation</u></p>
+    <p> <font color="000000" size="2.5">To enable this parameter, specify 
+        the <b>Right connector configuration</b> as <tt>Single bracket</tt> 
+        or <tt>Double bracket with pin</tt>. You can select the 
+        <b>Right bracket orientation</b> either to <tt>+X</tt> 
+        or <tt>+Z</tt>. If you set <b>Right bracket orientation</b> to <tt>+X</tt>, 
+        the axis of the bracket hole (for <tt>Single bracket</tt>) or bracket pin 
+        (for <tt>Double bracket with pin</tt>) is oriented in the X-axis direction 
+        of the World Frame.<br><br>
+        <img vspace="5" hspace="5" src="RightBracketXHelp.png" alt="" width="677" height="252"> <br><br>
+        Similarly, if you set the <b>Right bracket orientation</b> to <tt>+Z</tt>, 
+        the axis of the bracket hole (for <tt>Single bracket</tt>) or bracket pin 
+        (for <tt>Double bracket with pin</tt>) is oriented in the Z-axis 
+        direction of the World Frame.<br><br>
+        <img vspace="5" hspace="5" src="RightBracketZHelp.png" alt="" width="677" height="252"> <br><br></p>
+    <p> <font color="FF8800" size="4">Geometry</p>
+    <p> <font color="000000" size="3"><u>Link radius</u></p>
+    <p> <font color="000000" size="2.5">Radius of the cylinder that constitutes the middle section of the link.<br>
+        Some internal parameters of the link depend on the Link radius. 
+        If you set connector configuration to <tt>Single bracket</tt> and <tt>Double bracket with pin</tt>, the parameters are calculated as following:<br><br>
+        l<sub> Bracket</sub> = (r<sub> Link</sub>/2)*1.5<br>
+        w<sub> Bracket</sub> = 0.9*r<sub> Link</sub><br>
+        r<sub> Hole</sub> = r<sub> Link</sub>/3<br>
+        r<sub> Bracket</sub> = r<sub> Link</sub><br><br>
+        If you set connector configuration to <tt>Rotating pin</tt>, the parameter is calculated as following:<br><br>
+        r<sub> Pin</sub> = r<sub> Link</sub>/3<br>
+        l<sub> Pin</sub> = r<sub> Link</sub>/2<br><br>
+        If you set connector configuration to <tt>Pin socket</tt>, the parameters are calculated as following:<br><br>
+        r<sub> Outer Socket</sub> = 1.5*(r<sub> Link</sub>/3)<br>
+        r<sub> Inner Socket</sub> = r<sub> Link</sub>/3<br><br>
+        For left plate and right plate, the parameter is formulated as following:<br>
+        r<sub> Plate</sub> = 1.05*r<sub> Link</sub><br><br>
+        where, <br>
+        l<sub> Bracket</sub> is the distance of the center of hole (for <tt>Single bracket</tt>) or center of pin (for <tt>Double bracket with pin</tt>) from the base of the bracket.<br>
+        w<sub> Bracket</sub> is the distance between two single brackets of a <tt>Double bracket with pin</tt>. It is also the pin length of a <tt>Double bracket with pin</tt>.<br>
+        r<sub> Hole</sub> is the radius of the hole (for <tt>Single bracket</tt>) or of the pin (for <tt>Double bracket with pin</tt>).<br>
+        r<sub> Bracket</sub> is the radius of the leftmost curvature of the left bracket or of the rightmost curvature of the right bracket.<br>
+        r<sub> Plate</sub> is the radius of the cylindrical end plates.<br>
+        r<sub> Pin</sub> is the radius of the cylindrical rotating pin<br>
+        r<sub> Outer Socket</sub> is the outer radius of the holow cylindrical pin socket<br>
+        r<sub> Inner Socket</sub> is the inner radius of the holow cylindrical pin socket<br></p>
+    <p> <u><font color="000000" size="3">Link length</u></p>
+    <p> <font color="000000" size="2.5">Distance between the center of left connector and the center of right connector of the link.<br>
+        The middle section of the link and some internal parameters of the link depend on the Link length. 
+        The parameter, l<sub> Mid Section</sub> is calculated as following:<br><br>
+        l<sub> Mid Section</sub> = (l<sub> Link</sub> - n<sub> Bracket</sub>*l<sub> Bracket</sub> - n<sub> Pin</sub>*0.5*l<sub> Pin</sub>)/(1 + 2*0.05)<br><br>
+        where, l<sub> Mid Section</sub> is the length of the cylinder that constitutes the middle section of the link.<br>
+        l<sub> Link</sub> is the distance between the center of left connector and the center of right connector of the link.<br>
+        n<sub> Bracket</sub> is the number of bracketed joints for the link.<br>
+        n<sub> Pin</sub> is the number of pinned joints for the link.<br>
+        l<sub> Bracket</sub> is the distance of the center of hole (for <tt>Single bracket</tt>) or center of pin (for <tt>Double bracket with pin</tt>) from the base of the bracket.<br>
+        l<sub> Pin</sub> is the length of the cylindrical pin or of the hollow cylindrical pin socket.<br><br>
+        For left plate and right plate, the plate thickness is calculated as following:<br>
+        t<sub> Plate</sub> = 0.05*l<sub> Mid Section</sub><br><br>
+        where, t<sub> Plate</sub> is the length of the cylindrical end plates.<br>
+        Below is the schematic of a link with Single bracket as left connector and Rotating pin as right connector.
+        <img vspace="5" hspace="5" src="LinkSchematic1Help.png" alt="" width="825" height="266"><br>
+        Below is the schematic of a link with Double bracket with pin as left connector and Pin socket as right connector.
+        <img vspace="5" hspace="5" src="LinkSchematic2Help.png" alt="" width="850" height="261"><br></p>
+    <p> <font color="FF8800" size="4">Inertia</p>
+    <p> <font color="000000" size="3"><u>Inertia type</u></p>
+        <p> <font color="000000" size="2.5">Inertia type, specified as 
+            <tt>Custom</tt> or <tt>Calculate from Geometry</tt>. 
+        Select <tt>Custom</tt> to model a distributed mass with the 
+        specified moments and products of inertia. Select <tt>Calculate from Geometry</tt>
+        to enable the block to automatically calculate the rotational inertia 
+        properties from the solid geometry and specified mass density of the link.</p>
+    <p> <u><font color="000000" size="3">Link density</u></p>
+    <p> <font color="000000" size="2.5">Material density of the link, 
+        specified as a positive scalar. The unit is kg/m^3.</p>
+    <p> <u><font color="000000" size="3">Mass</u></p>
+    <p> <font color="000000" size="2.5">Total mass of the link, specified 
+        as a positive scalar. The unit is kg. Mass is distributed to the 
+        cylindrical Middle section only and the mass of end connectors and 
+        end plates is assumed to be zero.</p>
+    <p> <u><font color="000000" size="3">Center of mass</u></p>
+    <p> <font color="000000" size="2.5">[x y z] coordinates 
+        of the center of mass of the link relative to the body frame 
+        located at the centroid of the left surface of the Middle 
+        section.</p>
+    <p> <u><font color="000000" size="3">Moments of inertia</u></p>
+    <p> <font color="000000" size="2.5">Three-element vector with the [Ixx Iyy Izz] 
+        moments of inertia specified relative to a frame with origin at the 
+        center of mass and axes parallel to the body frame 
+        located at the centroid of the left surface of the Middle section. 
+        The moments of inertia are the diagonal elements of the inertia tensor<br><br>
+        <math>    
+   <mrow>
+      <mo>[</mo>
+      <mtable>
+         <mtr>
+            <mtd><msub><mi>I</mi><mn>xx</mn></msub></mtd>
+            <mtd><mn></mn></mtd>
+            <mtd><mn></mn></mtd>
+         </mtr>
+         
+         <mtr>
+            <mtd><mn></mn></mtd>
+             <mtd><msub><mi>I</mi><mn>yy</mn></msub></mtd>
+            <mtd><mn></mn></mtd>
+         </mtr>
+         
+         <mtr>
+            <mtd><mn></mn></mtd>
+            <mtd><mn></mn></mtd>
+             <mtd><msub><mi>I</mi><mn>zz</mn></msub></mtd>
+         </mtr>
+      </mtable>
+      <mo>]</mo>
+   </mrow>
+        </math>
+        <br><br>
+        where:<br>
+        <i>I<sub>xx</sub> = <font size="4.5"> &#x222b<font size="2.5"><sub>m</sub> <font size="2.5">(y<sup>2</sup> + z<sup>2</sup>)dm</i><br>
+        <i>I<sub>yy</sub> = <font size="4.5"> &#x222b<font size="2.5"><sub>m</sub> <font size="2.5">(x<sup>2</sup> + z<sup>2</sup>)dm</i><br>
+        <i>I<sub>zz</sub> = <font size="4.5"> &#x222b<font size="2.5"><sub>m</sub> <font size="2.5">(x<sup>2</sup> + y<sup>2</sup>)dm</i></p>
+    <p> <u><font color="000000" size="3">Products of inertia</u></p>
+    <p> <font color="000000" size="2.5">Three-element vector with the [Iyz Izx Ixy] 
+        products of inertia specified relative to a frame with origin at the 
+        center of mass and axes parallel to the body frame 
+        located at the centroid of the left surface of the Middle section. 
+        The products of inertia are the off-diagonal elements of the inertia tensor<br><br>
+        <math>    
+   <mrow>
+      <mo>[</mo>
+      <mtable>
+         <mtr>
+             <mtd><mn></mn></mtd>
+             <mtd><msub><mi>I</mi><mn>xy</mn></msub></mtd>
+             <mtd><msub><mi>I</mi><mn>zx</mn></msub></mtd>
+         </mtr>
+         
+         <mtr>
+             <mtd><msub><mi>I</mi><mn>xy</mn></msub></mtd>
+             <mtd><mn></mn></mtd>
+             <mtd><msub><mi>I</mi><mn>yz</mn></msub></mtd>
+         </mtr>
+         
+         <mtr>
+             <mtd><msub><mi>I</mi><mn>zx</mn></msub></mtd>
+             <mtd><msub><mi>I</mi><mn>yz</mn></msub></mtd>
+             <mtd><mn></mn></mtd>
+         </mtr>
+      </mtable>
+      <mo>]</mo>
+   </mrow>
+        </math>
+        <br><br>
+        where:<br>
+        <i>I<sub>yz</sub> = <font size="4.5"> - &#x222b<font size="2.5"><sub>m</sub> <font size="2.5">yz dm</i><br>
+        <i>I<sub>zx</sub> = <font size="4.5"> - &#x222b<font size="2.5"><sub>m</sub> <font size="2.5">zx dm</i><br>
+        <i>I<sub>xy</sub> = <font size="4.5"> - &#x222b<font size="2.5"><sub>m</sub> <font size="2.5">xy dm</i><br></p>
+    <p> <font color="FF8800" size="4">Graphic</p>
+    <p> <font color="000000" size="3"><u>Link color</u></p>
+    <p> <font color="000000" size="2.5">Color of the Middle section graphic 
+        under direct white light, specified as an [R G B] or [R G B A] vector 
+        on a 0–1 scale. An optional fourth element (A) specifies the color 
+        opacity on a scale of 0–1. Omitting the opacity element is equivalent 
+        to specifying a value of 1.</p> 
+    <br>
+    <p>Copyright 2023 - 2024 The MathWorks, Inc.</p>       
+</body></html>

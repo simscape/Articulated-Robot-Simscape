@@ -1,0 +1,191 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Articulated Robot Design with Simscape</title><meta name="generator" content="MATLAB 9.14"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2024-03-18"><meta name="DC.source" content="RobotDesignOverview.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Articulated Robot Design with Simscape</h1><!--introduction--><p>This project contains custom libraries, models and code to help you design articulated robots. You can learn to perform a parameter sensitivity analysis, determine the work envelope and actuator rating, and perform a stacking operation.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Articulated Robot For Stacking Operation</a></li><li><a href="#2">Design Your Own Articulated Robot</a></li><li><a href="#3">Workflows</a></li><li><a href="#4">Model</a></li></ul></div><h2 id="1">Articulated Robot For Stacking Operation</h2><p>Articulated robots are an integral part of various industries, ranging from manufacturing and assembly to healthcare and research. The development of articulated robots involves the design, control, and implementation of mechanical systems capable of performing precise tasks. Mechanical designers often use Computer-Aided Design (CAD) models to evaluate a design. To meet all the functional requirements, the CAD design process is generally iterative and can be time consuming. You can accelerate the development process by starting with a system-level analysis to evaluate your options. This project shows how to create a system-level simplified parametric robot model using Simscape Multibody&#8482;.</p><div><ul><li>To open the articulated robot model for stacking application, click <a href="matlab:open_system('StackingRobotModel.slx')">Stacking Robot Model</a>.</li><li>You can define your own custom trajectory and analyze the stacking operation.</li></ul></div><p><img vspace="5" hspace="5" src="RobotStackingAnimation.gif" alt=""> </p><div><ul><li>To run the model for pre-defined stacking scenarios, in the Input Trajectory Preload block, set <b>Scenario</b> to <tt>Stacking 1</tt> or <tt>Stacking 2</tt>. Set <b>Scenario</b> to <tt>Custom Trajectory</tt> and run the model  to see the robot trace a path as per your choice.</li><li>To generate any trajectory, click on <b>Create custom trajectory using app</b> on the canvas.</li><li>Define waypoints and gripper open or close signal and click <b>Generate Trajectory</b> button in the Custom Trajectory Generator app.</li><li>You can compare measured joint angles with target values using the scope block Joint Angles on model canvas. You can view measured joint torques in the scope block Joint Torques.</li><li>The stacking robot model uses pre-defined robot arm trajectory for solved inverse kinematics and inverse dynamics. To learn how to solve inverse kinematics and inverse dynamics for a stacking operation using a Simscape model, see <a href="matlab:open('StackingWorkflow.mlx')">Perform a Stacking Operation with an Articulated Robot</a>.</li></ul></div><p>To design your own articulated robot, you can leverage the existing custom library blocks or create your new custom blocks. To learn more on how to do that, go to the next section and follow the 6-step process. You will also learn how to determine which robot arm link length has the highest influence on its reach and how manufacturing tolerances may impact the same.</p><h2 id="2">Design Your Own Articulated Robot</h2><p>This section contains information to help you learn how to build and parameterize components, assemble them to build an articulated robot, and verify a final design for a stacking application. Follow these steps to design an articulated robot.</p><p>1. <b>Design Components:</b> The project contains custom library blocks such as <a href="matlab:web('Link.html','-new')">Link</a>, <a href="matlab:web('LLink.html','-new')">L-Link</a>, <a href="matlab:web('RotatingBaseWithBracket.html','-new')">Rotating Base With Bracket</a>, <a href="matlab:web('TwoFingerGripper.html','-new')">Two Finger Gripper</a>. The custom library blocks serve as early-stage or system-level mechanical design tools for quick prototyping and development of a simplified parametric articulated robot. The custom library blocks use the foundation of Simscape Multibody. You can parameterize custom library blocks to suit your application.</p><p>2. <b>Assemble Robot from Components:</b> Assemble the parameterized blocks to build integrated robot models with end effectors. You can also represent the payloads and operating environment using Simscape Multibody. To setup a model with parameterized library blocks, see <a href="matlab:web('RobotModelSetupHelp.html','-new')">Articulated Robot Model Setup with Simscape Multibody</a>.</p><p>3. <b>Determine Operating Work Envelope of Designed Robot:</b> After you create the robot model, you can determine the work envelope. To determine the work envelope of the robot for a given architecture, see <a href="matlab:open('DetermineEnvelopeWorkflow.mlx')">Determine the Work Envelope for an Articulated Robot</a>.</p><p>4. <b>Study Impact of Design Parameters on Work Envelope:</b> You can predict how the system performance depends on key design parameters. To study the impact of key mechanical design parameters on the robot work envelope, see <a href="matlab:open('ParameterSensitivityAnalysisWorkflow.mlx')">Perform a Parameter Sensitivity Analysis for the Robot Work Envelope</a>.</p><p>5. <b>Size Joint Actuation Components:</b> For a known work envelope and payload weight, you can size the electrical actuation components. To learn more about sizing electrical actuation components, see <a href="matlab:open('ActuatorRatingWorkflow.mlx')">Evaluate the Actuator Rating for an Articulated Robot</a>.</p><p>6. <b>Perform Stacking Operation:</b> You can use a robot model with sized actuators to perform a task. To learn more about using such an articulated robot to perform a stacking operation, see <a href="matlab:open('StackingWorkflow.mlx')">Perform a Stacking Operation with an Articulated Robot</a>.</p><h2 id="3">Workflows</h2><div><ul><li><a href="matlab:open('DetermineEnvelopeWorkflow.mlx')">Determine the Work Envelope for an Articulated Robot</a> (Step # 3 above)</li><li><a href="matlab:open('ParameterSensitivityAnalysisWorkflow.mlx')">Perform a Parameter Sensitivity Analysis for the Robot Work Envelope</a> (Step # 4 above)</li><li><a href="matlab:open('ActuatorRatingWorkflow.mlx')">Evaluate the Actuator Rating for an Articulated Robot</a> (Step # 5 above)</li><li><a href="matlab:open('StackingWorkflow.mlx')">Perform a Stacking Operation with an Articulated Robot</a> (Step # 6 above)</li></ul></div><h2 id="4">Model</h2><div><ul><li><a href="matlab:open_system('StackingRobotModel.slx')">Stacking Robot Model</a></li></ul></div><p class="footer">Copyright 2023 - 2024 The MathWorks, Inc.<br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2023a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Articulated Robot Design with Simscape
+% 
+% This project contains custom libraries, models and code to help 
+% you design articulated robots. You can learn to perform a parameter sensitivity 
+% analysis, determine the work envelope and actuator rating, and perform a 
+% stacking operation.
+%
+
+% Copyright 2023 - 2024 The MathWorks, Inc.
+
+%% Articulated Robot For Stacking Operation
+%
+% Articulated robots are an integral part of various industries, 
+% ranging from manufacturing and assembly to healthcare and research. The 
+% development of articulated robots involves the design, control, and 
+% implementation of mechanical systems capable of performing precise tasks.
+% Mechanical designers often use Computer-Aided Design (CAD) models to 
+% evaluate a design. To meet all the functional requirements, the CAD 
+% design process is generally iterative and can be time consuming. You can 
+% accelerate the development process by starting with a system-level analysis 
+% to evaluate your options. This project shows how to create a system-level
+% simplified parametric robot model using Simscape Multibody(TM).
+%
+% * To open the articulated robot model for stacking application, click
+% <matlab:open_system('StackingRobotModel.slx') Stacking Robot Model>. 
+% * You can define your own custom trajectory and analyze the stacking operation.
+% 
+% <<RobotStackingAnimation.gif>>
+%
+% * To run the model for pre-defined stacking scenarios, in the Input Trajectory 
+% Preload block, set *Scenario* to |Stacking 1| or |Stacking 2|. Set *Scenario* 
+% to |Custom Trajectory| and run the model  to see the robot trace a path 
+% as per your choice. 
+% * To generate any trajectory, click on *Create custom 
+% trajectory using app* on the canvas. 
+% * Define waypoints and gripper open or 
+% close signal and click *Generate Trajectory* button in the Custom Trajectory 
+% Generator app. 
+% * You can compare measured joint angles with target values 
+% using the scope block Joint Angles on model canvas. You can view measured
+% joint torques in the scope block Joint Torques.
+% * The stacking robot model uses pre-defined robot arm trajectory for solved inverse 
+% kinematics and inverse dynamics. To learn how to solve inverse kinematics 
+% and inverse dynamics for a stacking operation using a Simscape model, see 
+% <matlab:open('StackingWorkflow.mlx') Perform a Stacking Operation with 
+% an Articulated Robot>.
+%
+% To design your own articulated robot, you can leverage the existing 
+% custom library blocks or create your new custom blocks. To learn more on 
+% how to do that, go to the next section and follow the 6-step process. You 
+% will also learn how to determine which robot arm link length has the highest 
+% influence on its reach and how manufacturing tolerances may impact the same.
+%
+%% Design Your Own Articulated Robot
+% 
+% This section contains information to help you learn how to build and 
+% parameterize components, assemble them to build an articulated 
+% robot, and verify a final design for a stacking application. Follow these 
+% steps to design an articulated robot.
+%
+% 1. *Design Components:* The project contains custom library blocks such 
+% as <matlab:web('Link.html','-new') Link>, <matlab:web('LLink.html','-new') L-Link>, 
+% <matlab:web('RotatingBaseWithBracket.html','-new') Rotating Base With Bracket>, 
+% <matlab:web('TwoFingerGripper.html','-new') Two Finger Gripper>. The custom 
+% library blocks serve as early-stage or system-level mechanical design tools for 
+% quick prototyping and development of a simplified parametric articulated 
+% robot. The custom library blocks use the foundation of Simscape Multibody. 
+% You can parameterize custom library blocks to suit your application.
+%
+% 2. *Assemble Robot from Components:* Assemble the parameterized blocks to 
+% build integrated robot models with end effectors. You can also represent the
+% payloads and operating environment using Simscape Multibody. To setup a 
+% model with parameterized library blocks, see 
+% <matlab:web('RobotModelSetupHelp.html','-new') Articulated Robot Model Setup
+% with Simscape Multibody>.
+%
+% 3. *Determine Operating Work Envelope of Designed Robot:* After you 
+% create the robot model, you can determine the work envelope. 
+% To determine the work envelope of the robot for a given 
+% architecture, see
+% <matlab:open('DetermineEnvelopeWorkflow.mlx') Determine the Work Envelope for an
+% Articulated Robot>.
+%
+% 4. *Study Impact of Design Parameters on Work Envelope:* You can predict 
+% how the system performance depends on key design parameters. To study the 
+% impact of key mechanical design parameters on the robot work 
+% envelope, see
+% <matlab:open('ParameterSensitivityAnalysisWorkflow.mlx') Perform
+% a Parameter Sensitivity Analysis for the Robot Work Envelope>.
+%
+% 5. *Size Joint Actuation Components:* For a known work envelope 
+% and payload weight, you can size the electrical actuation components. To 
+% learn more about sizing electrical actuation components, see 
+% <matlab:open('ActuatorRatingWorkflow.mlx') Evaluate the Actuator Rating for
+% an Articulated Robot>.
+%
+% 6. *Perform Stacking Operation:* You can use a robot model with sized 
+% actuators to perform a task. To learn more about using such an 
+% articulated robot to perform a stacking operation, see
+% <matlab:open('StackingWorkflow.mlx') Perform a Stacking Operation with an 
+% Articulated Robot>.
+% 
+%% Workflows  
+%
+% * <matlab:open('DetermineEnvelopeWorkflow.mlx') Determine the Work Envelope for an
+% Articulated Robot> (Step # 3 above)
+% * <matlab:open('ParameterSensitivityAnalysisWorkflow.mlx') Perform a
+% Parameter Sensitivity Analysis for the Robot Work Envelope> (Step # 4 above)
+% * <matlab:open('ActuatorRatingWorkflow.mlx') Evaluate the Actuator Rating for
+% an Articulated Robot> (Step # 5 above)
+% * <matlab:open('StackingWorkflow.mlx') Perform a Stacking Operation with 
+% an Articulated Robot> (Step # 6 above)
+%
+%% Model
+%
+% * <matlab:open_system('StackingRobotModel.slx') Stacking Robot Model>
+%
+
+##### SOURCE END #####
+--></body></html>

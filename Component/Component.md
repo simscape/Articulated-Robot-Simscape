@@ -1,0 +1,1 @@
+All conmponent files will be in Component folder.

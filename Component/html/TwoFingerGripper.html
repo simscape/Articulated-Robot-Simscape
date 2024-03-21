@@ -1,0 +1,157 @@
+<!DOCTYPE html  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<body bgColor="FFFFFF"><html>
+    <title>Custom Library using Simscape Multibody: Two Finger Gripper</title>
+    <p> <font color="FF8800" size="4.5">Robot Arm Two Finger Gripper</p>
+    <p> <font color="000000" size="2.5">Robot arm Two Finger Gripper or 
+        simply, Two Finger Gripper block models a device that enables a manipulator 
+        robot to pick up, hold and place objects. A two finger gripper is a 
+        rigid body that consists of a palm, and two fingers. Each finger is 
+        connected with the palm using a <b>Prismatic Joint</b>.<br><br>
+    <img vspace="5" hspace="5" src="TwoFingerGripperParts.png" alt="" width="379" height="334"> <br></p>
+    <p> <u><font color="000000" size="4">Ports</u></p>
+    <p> <font color="000000" size="3"><u>B - Base Frame</u></p>
+    <p> <font color="000000" size="2.5">Body frame located at the centroid
+        of the bottom surface of the palm. Use this frame to connect other 
+        components, such as links.</p>
+    <p> <font color="000000" size="3"><u>A - Actuation</u></p>
+    <p> <font color="000000" size="2.5">Physical signal input port that accepts 
+        the actuation force for the joint primitive. The signal provides the 
+        value of the force that applies on both the base and follower frames 
+        of the Prismatic joint.</p>
+    <p> <font color="000000" size="3"><u>G - Geometry</u></p>
+    <p> <font color="000000" size="2.5">Geometry that represents the solid. 
+        Connect this port to a <b>Spatial Contact Force</b> block to model 
+        contacts on the solid.</p>
+    <p> <u><font color="000000" size="4">Parameters</u></p>
+    <p> <font color="000000" size="3"><u>Finger length</u></p>
+    <p> <font color="000000" size="2.5">Length of each 
+        finger in the direction perpendicular to the surface of the palm to which 
+        the fingers, Finger1 and Finger2 are connected. This surface of the palm is called the top surface.<br>
+        The height of the palm of the two finger gripper depends on the Finger length. 
+        The parameter is calculated as following:<br><br>
+        h<sub> Palm</sub> = l<sub> Finger</sub>/4<br><br>
+        where, <br>
+        h<sub> Palm</sub> is the distance between the top surface and the bottom surface of the palm.<br></p>
+    <p> <u><font color="000000" size="3">Finger width</u></p>
+    <p> <font color="000000" size="2.5">Distance between 
+        two edges of the inner gripping surface of each finger, which are 
+        perpendicular to the top surface of the palm.<br>
+        The width of the palm of the two finger gripper depends on the Finger width. 
+        The parameter is calculated as following:<br><br>
+        w<sub> Palm</sub> = 1.1*w<sub> Finger</sub><br><br>
+        where, <br>
+        w<sub> Palm</sub> is the distance between the two surfaces of the palm located along the finger width.<br></p>
+    <p> <u><font color="000000" size="3">Finger maximum opening</u></p>
+    <p> <font color="000000" size="2.5">Maximum 
+        distance between the inner gripping surfaces of two fingers, Finger1 and Finger2. 
+        The length of the palm of the two finger gripper depends on the Finger maximum opening. 
+        The parameter is calculated as following:<br><br>
+        l<sub> Palm</sub> = 1.1*s<sub> Finger Max</sub><br><br>
+        where, <br>
+        l<sub> Palm</sub> is the distance between the two surfaces of the palm located along the finger motion.<br><br>
+        Below is the schematic of a two finger gripper showing front and side views.<br><br>
+        <img vspace="5" hspace="5" src="TwoFingerGripperSchematicHelp.png" alt="" width="650" height="345"><br><br></p>
+    <p> <u><font color="000000" size="3">Gripper density</u></p>
+    <p> <font color="000000" size="2.5">Material density of the two finger gripper, 
+        specified as a positive scalar. The unit is kg/m^3.</p>
+    <p> <u><font color="000000" size="3">Mass</u></p>
+    <p> <font color="000000" size="2.5">Total mass of the two finger gripper, specified 
+        as a positive scalar. The unit is kg. Mass is distributed to the 
+        Gripper palm only and the mass of the fingers, Finger1 and Finger2 is assumed to be zero.</p>
+    <p> <u><font color="000000" size="3">Center of mass</u></p>
+    <p> <font color="000000" size="2.5">[x y z] coordinates 
+        of the center of mass of the gripper relative to the body frame 
+        located at the centroid of the bottom surface of the 
+        Gripper palm.</p>
+    <p> <u><font color="000000" size="3">Moments of inertia</u></p>
+    <p> <font color="000000" size="2.5">Three-element vector with the [Ixx Iyy Izz] 
+        moments of inertia specified relative to a frame with origin at the 
+        center of mass and axes parallel to the body frame 
+        located at the centroid of the bottom surface of the Gripper palm. 
+        The moments of inertia are the diagonal elements of the inertia tensor<br><br>
+        <math>    
+   <mrow>
+      <mo>[</mo>
+      <mtable>
+         <mtr>
+            <mtd><msub><mi>I</mi><mn>xx</mn></msub></mtd>
+            <mtd><mn></mn></mtd>
+            <mtd><mn></mn></mtd>
+         </mtr>
+         
+         <mtr>
+            <mtd><mn></mn></mtd>
+             <mtd><msub><mi>I</mi><mn>yy</mn></msub></mtd>
+            <mtd><mn></mn></mtd>
+         </mtr>
+         
+         <mtr>
+            <mtd><mn></mn></mtd>
+            <mtd><mn></mn></mtd>
+             <mtd><msub><mi>I</mi><mn>zz</mn></msub></mtd>
+         </mtr>
+      </mtable>
+      <mo>]</mo>
+   </mrow>
+        </math>
+        <br><br>
+        where:<br>
+        <i>I<sub>xx</sub> = <font size="4.5"> &#x222b<font size="2.5"><sub>m</sub> <font size="2.5">(y<sup>2</sup> + z<sup>2</sup>)dm</i><br>
+        <i>I<sub>yy</sub> = <font size="4.5"> &#x222b<font size="2.5"><sub>m</sub> <font size="2.5">(x<sup>2</sup> + z<sup>2</sup>)dm</i><br>
+        <i>I<sub>zz</sub> = <font size="4.5"> &#x222b<font size="2.5"><sub>m</sub> <font size="2.5">(x<sup>2</sup> + y<sup>2</sup>)dm</i></p>
+    <p> <u><font color="000000" size="3">Products of inertia</u></p>
+    <p> <font color="000000" size="2.5">Three-element vector with the [Iyz Izx Ixy] 
+        products of inertia specified relative to a frame with origin at the 
+        center of mass and axes parallel to the body frame 
+        located at the centroid of the bottom surface of the Gripper palm. 
+        The products of inertia are the off-diagonal elements of the inertia tensor<br><br>
+        <math>    
+   <mrow>
+      <mo>[</mo>
+      <mtable>
+         <mtr>
+             <mtd><mn></mn></mtd>
+             <mtd><msub><mi>I</mi><mn>xy</mn></msub></mtd>
+             <mtd><msub><mi>I</mi><mn>zx</mn></msub></mtd>
+         </mtr>
+         
+         <mtr>
+             <mtd><msub><mi>I</mi><mn>xy</mn></msub></mtd>
+             <mtd><mn></mn></mtd>
+             <mtd><msub><mi>I</mi><mn>yz</mn></msub></mtd>
+         </mtr>
+         
+         <mtr>
+             <mtd><msub><mi>I</mi><mn>zx</mn></msub></mtd>
+             <mtd><msub><mi>I</mi><mn>yz</mn></msub></mtd>
+             <mtd><mn></mn></mtd>
+         </mtr>
+      </mtable>
+      <mo>]</mo>
+   </mrow>
+        </math>
+        <br><br>
+        where:<br>
+        <i>I<sub>yz</sub> = <font size="4.5"> - &#x222b<font size="2.5"><sub>m</sub> <font size="2.5">yz dm</i><br>
+        <i>I<sub>zx</sub> = <font size="4.5"> - &#x222b<font size="2.5"><sub>m</sub> <font size="2.5">zx dm</i><br>
+        <i>I<sub>xy</sub> = <font size="4.5"> - &#x222b<font size="2.5"><sub>m</sub> <font size="2.5">xy dm</i><br></p>
+    <p> <u><font color="000000" size="3">Finger color</u></p>
+    <p> <font color="000000" size="2.5">Color of the graphic of fingers, Finger1 and Finger2, 
+        under direct white light, specified as an [R G B] or [R G B A] vector 
+        on a 0–1 scale. An optional fourth element (A) specifies the color 
+        opacity on a scale of 0–1. Omitting the opacity element is equivalent 
+        to specifying a value of 1.</p> 
+    <p> <u><font color="000000" size="3">Finger point cloud density</u></p>
+    <p> <font color="000000" size="2.5">Number of contact points per unit area 
+        of the inner gripping surface of each finger. To generate a sparse 
+        point cloud on the finger gripping surface, set 
+        <b>Finger point cloud density</b> to <tt>4</tt> or lower. A sparse point 
+        cloud may not establish accurate contact, but the simulation will be fast.<br><br>
+        <img vspace="5" hspace="5" src="TwoFingerGripperSparsePointCloudHelp.png" alt="" width="371" height="426"> <br><br>
+        To generate a dense point cloud, set <b>Finger point cloud density</b> 
+        to <tt>6</tt> or higher. A dense point cloud enables accurate 
+            contact establishment, but the simulation will slow down.<br><br>
+            <img vspace="5" hspace="5" src="TwoFingerGripperDensePointCloudHelp.png" alt="" width="371" height="426"></p>
+    <br>
+    <p>Copyright 2023 - 2024 The MathWorks, Inc.</p>  
+</body></html>

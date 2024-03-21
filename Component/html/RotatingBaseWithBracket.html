@@ -1,0 +1,271 @@
+<!DOCTYPE html  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<body bgColor="FFFFFF"><html>
+    <title>Custom Library using Simscape Multibody: Rotating Base with Bracket</title>
+    <p> <font color="FF8800" size="4.5">Robot Rotating Base With Bracket</p>
+    <p> <font color="000000" size="2.5">Robot rotating base with bracket or 
+        simply, the Rotating Base With Bracket block models the base of a 
+        manipulator robot. A rotating base with bracket is a rigid body that 
+        consists of a fixed base, a rotor and a bracket mounted on the rotor. 
+        Connect the rotor to the fixed base using a <b>Revolute Joint</b>.<br><br>
+    <img vspace="5" hspace="5" src="RotatingBaseWithBracketParts.png" alt="" width="406" height="340"> <br></p>
+    <p> <u><font color="000000" size="4">Ports</u></p>
+    <p> <font color="000000" size="3"><u>B - Base Frame</u></p>
+    <p> <font color="000000" size="2.5">Body frame located at the centroid
+        of the bottom surface of the fixed base. Use this frame to connect 
+        to the World Frame.</p>
+    <p> <font color="000000" size="3"><u>F - Follower Frame</u></p>
+    <p> <font color="000000" size="2.5">Body frame located at the centroid
+        of the bracket. Use this frame to connect other 
+        components, such as joints.</p>
+    <p> <font color="000000" size="3"><u>B - Joint Base Frame</u></p>
+    <p> <font color="000000" size="2.5">Body frame located at the centroid
+        of the top surface of the fixed base. Use this frame to connect to 
+        a <b>Revolute Joint</b>.</p>
+    <p> <font color="000000" size="3"><u>B - Joint Follower Frame</u></p>
+    <p> <font color="000000" size="2.5">Body frame located at the centroid
+        of the bottom surface of the rotor. Use this frame to connect to 
+        a <b>Revolute Joint</b>.</p>
+    <p> <u><font color="000000" size="4">Parameters</u></p>
+    <p> <font color="FF8800" size="4">Bracket configuration</p>
+    <p> <font color="000000" size="2.5">The configuration of the bracket, 
+        specified as <tt>Single bracket</tt> and 
+        <tt>Double bracket with pin</tt>.</p>
+    <p> Connect the bracket of the rotating base to the bracket of a link 
+        using a <b>Revolute Joint</b> in between. You can connect the 
+        <tt>Single bracket</tt> of the rotating base to a 
+        <tt>Double bracket with pin</tt> of a link or you can connect the 
+        <tt>Double bracket with pin</tt> of the rotating base to a 
+        <tt>Single bracket</tt> of a link.<br></p>
+    <p> <font color="FF8800" size="4">Geometry</p>
+    <p> <font color="000000" size="3"><u>Fixed base radius</u></p>
+    <p> <font color="000000" size="2.5">Radius of 
+        the cylinder that constitutes the fixed base.<br>
+        Some internal parameters of the link depend on the Fixed base radius. 
+        The parameters are calculated as following:<br><br>
+        r<sub> Rotor</sub> = 0.8*r<sub> Base</sub><br>
+        l<sub> Bracket</sub> = (0.8*r<sub> Base</sub>/2)*1.5<br>
+        w<sub> Bracket</sub> = 0.9*0.8*r<sub> Base</sub><br>
+        r<sub> Hole</sub> = (0.8*r<sub> Base</sub>)/3<br>
+        r<sub> Bracket</sub> = 0.8*r<sub> Base</sub><br><br>
+        where, <br>
+        r<sub> Base</sub> is the radius of the cylinder that constitutes the fixed base.<br>
+        r<sub> Rotor</sub> is the radius of the cylinder that constitutes the rotor.<br>
+        l<sub> Bracket</sub> is the distance of the center of hole (for <tt>Single bracket</tt>) or center of pin (for <tt>Double bracket with pin</tt>) from the base of the bracket.<br>
+        w<sub> Bracket</sub> is the distance between two single brackets of a <tt>Double bracket with pin</tt>. It is also the pin length of a <tt>Double bracket with pin</tt>.<br>
+        r<sub> Hole</sub> is the radius of the hole (for <tt>Single bracket</tt>) or of the pin (for <tt>Double bracket with pin</tt>).<br>
+        r<sub> Bracket</sub> is the radius of the curvature of the bracket.<br></p>
+    <p> <u><font color="000000" size="3">Base total length</u></p>
+    <p> <font color="000000" size="2.5">Distance 
+        between the bottom surface of the fixed base and the center of hole 
+        (for <tt>Single bracket</tt>) or center of pin (for <tt>Double 
+        bracket with pin</tt>) of the bracket, measured in the direction 
+        perpendicular to the bottom surface of the fixed base.<br>
+        The Fixed base length and the Rotor length depends on the Base total length. 
+        The parameters are calculated as following:<br><br>
+        baseLength = (baseTotalLength - bracketLength)/1.7;
+        rotorLength = 0.7*baseLength;
+        l<sub> Fixed Base</sub> = (l<sub> Base Total</sub> - l<sub> Bracket</sub>)/1.7<br>
+        l<sub> Rotor</sub> = 0.7*l<sub> Fixed Base</sub><br><br>
+        where, l<sub> Base Total</sub> is the base total length.<br>
+        l<sub> Fixed Base</sub> is the length of the cylinder that constitutes the fixed base.<br>
+        l<sub> Rotor</sub> is the length of the cylinder that constitutes the rotor.<br>
+        l<sub> Bracket</sub> is the distance of the center of hole (for <tt>Single bracket</tt>) or center of pin (for <tt>Double bracket with pin</tt>) from the base of the bracket.<br><br>
+        Below is the schematic of a rotating base with with double bracket.<br><br>
+        <img vspace="5" hspace="5" src="RotatingBaseWithBracketSchematicHelp.png" alt="" width="607" height="449"><br></p>
+    <p> <font color="FF8800" size="4">Inertia</p>
+    <p> <font color="FF8800" size="4">Fixed base</p>
+    <p> <font color="000000" size="3"><u>Inertia type</u></p>
+    <p> <font color="000000" size="2.5">Inertia type, specified as 
+            <tt>Custom</tt> or <tt>Calculate from Geometry</tt>. 
+        Select <tt>Custom </tt> to model a distributed mass with the 
+        specified moments and products of inertia. Select <tt>Calculate from Geometry</tt>
+        to enable the block to automatically calculate the rotational inertia 
+        properties from the solid geometry and specified mass density of the fixed base.</p>
+    <p> <u><font color="000000" size="3">Density</u></p>
+    <p> <font color="000000" size="2.5">Material density of the fixed base, 
+        specified as a positive scalar. The unit is kg/m^3.</p>
+    <p> <u><font color="000000" size="3">Mass</u></p>
+    <p> <font color="000000" size="2.5">Total mass of the fixed base, specified 
+        as a positive scalar. The unit is kg.</p>
+    <p> <u><font color="000000" size="3">Center of mass</u></p>
+    <p> <font color="000000" size="2.5">[x y z] coordinates 
+        of the center of mass of the fixed base relative to the body frame 
+        located at the centroid of the bottom surface of the Fixed Base.</p>
+    <p> <u><font color="000000" size="3">Moments of inertia</u></p>
+    <p> <font color="000000" size="2.5">Three-element vector with the [Ixx Iyy Izz] 
+        moments of inertia specified relative to a frame with origin at the 
+        center of mass and axes parallel to the body frame 
+        located at the centroid of the bottom surface of the Fixed Base. 
+        The moments of inertia are the diagonal elements of the inertia tensor<br><br>
+        <math>    
+   <mrow>
+      <mo>[</mo>
+      <mtable>
+         <mtr>
+            <mtd><msub><mi>I</mi><mn>xx</mn></msub></mtd>
+            <mtd><mn></mn></mtd>
+            <mtd><mn></mn></mtd>
+         </mtr>
+         
+         <mtr>
+            <mtd><mn></mn></mtd>
+             <mtd><msub><mi>I</mi><mn>yy</mn></msub></mtd>
+            <mtd><mn></mn></mtd>
+         </mtr>
+         
+         <mtr>
+            <mtd><mn></mn></mtd>
+            <mtd><mn></mn></mtd>
+             <mtd><msub><mi>I</mi><mn>zz</mn></msub></mtd>
+         </mtr>
+      </mtable>
+      <mo>]</mo>
+   </mrow>
+        </math>
+        <br><br>
+        where:<br>
+        <i>I<sub>xx</sub> = <font size="4.5"> &#x222b<font size="2.5"><sub>m</sub> <font size="2.5">(y<sup>2</sup> + z<sup>2</sup>)dm</i><br>
+        <i>I<sub>yy</sub> = <font size="4.5"> &#x222b<font size="2.5"><sub>m</sub> <font size="2.5">(x<sup>2</sup> + z<sup>2</sup>)dm</i><br>
+        <i>I<sub>zz</sub> = <font size="4.5"> &#x222b<font size="2.5"><sub>m</sub> <font size="2.5">(x<sup>2</sup> + y<sup>2</sup>)dm</i></p>
+    <p> <u><font color="000000" size="3">Products of inertia</u></p>
+    <p> <font color="000000" size="2.5">Three-element vector with the [Iyz Izx Ixy] 
+        products of inertia specified relative to a frame with origin at the 
+        center of mass and axes parallel to the body frame 
+        located at the centroid of the bottom surface of the Fixed Base. 
+        The products of inertia are the off-diagonal elements of the inertia tensor<br><br>
+        <math>    
+   <mrow>
+      <mo>[</mo>
+      <mtable>
+         <mtr>
+             <mtd><mn></mn></mtd>
+             <mtd><msub><mi>I</mi><mn>xy</mn></msub></mtd>
+             <mtd><msub><mi>I</mi><mn>zx</mn></msub></mtd>
+         </mtr>
+         
+         <mtr>
+             <mtd><msub><mi>I</mi><mn>xy</mn></msub></mtd>
+             <mtd><mn></mn></mtd>
+             <mtd><msub><mi>I</mi><mn>yz</mn></msub></mtd>
+         </mtr>
+         
+         <mtr>
+             <mtd><msub><mi>I</mi><mn>zx</mn></msub></mtd>
+             <mtd><msub><mi>I</mi><mn>yz</mn></msub></mtd>
+             <mtd><mn></mn></mtd>
+         </mtr>
+      </mtable>
+      <mo>]</mo>
+   </mrow>
+        </math>
+        <br><br>
+        where:<br>
+        <i>I<sub>yz</sub> = <font size="4.5"> - &#x222b<font size="2.5"><sub>m</sub> <font size="2.5">yz dm</i><br>
+        <i>I<sub>zx</sub> = <font size="4.5"> - &#x222b<font size="2.5"><sub>m</sub> <font size="2.5">zx dm</i><br>
+        <i>I<sub>xy</sub> = <font size="4.5"> - &#x222b<font size="2.5"><sub>m</sub> <font size="2.5">xy dm</i><br></p>
+    <p> <font color="FF8800" size="4">Rotor</p>
+    <p> <font color="000000" size="3"><u>Inertia type</u></p>
+    <p> <font color="000000" size="2.5">Inertia type, specified as 
+            <tt>Custom</tt> or <tt>Calculate from Geometry</tt>. 
+        Select <tt>Custom </tt> to model a distributed mass with the 
+        specified moments and products of inertia. Select <tt>Calculate from Geometry</tt>
+        to enable the block to automatically calculate the rotational inertia 
+        properties from the solid geometry and specified mass density of the rotor.</p>
+    <p> <u><font color="000000" size="3">Density</u></p>
+    <p> <font color="000000" size="2.5">Material density of the rotor, 
+        specified as a positive scalar. The unit is kg/m^3.</p>
+    <p> <u><font color="000000" size="3">Mass</u></p>
+    <p> <font color="000000" size="2.5">Total mass of the rotor, specified 
+        as a positive scalar. The unit is kg.</p>
+    <p> <u><font color="000000" size="3">Center of mass</u></p>
+    <p> <font color="000000" size="2.5">[x y z] coordinates 
+        of the center of mass of the rotor relative to the body frame 
+        located at the centroid of the bottom surface of the Rotor.</p>
+    <p> <u><font color="000000" size="3">Moments of inertia</u></p>
+    <p> <font color="000000" size="2.5">Three-element vector with the [Ixx Iyy Izz] 
+        moments of inertia specified relative to a frame with origin at the 
+        center of mass and axes parallel to the body frame 
+        located at the centroid of the bottom surface of the Rotor. 
+        The moments of inertia are the diagonal elements of the inertia tensor<br><br>
+        <math>    
+   <mrow>
+      <mo>[</mo>
+      <mtable>
+         <mtr>
+            <mtd><msub><mi>I</mi><mn>xx</mn></msub></mtd>
+            <mtd><mn></mn></mtd>
+            <mtd><mn></mn></mtd>
+         </mtr>
+         
+         <mtr>
+            <mtd><mn></mn></mtd>
+             <mtd><msub><mi>I</mi><mn>yy</mn></msub></mtd>
+            <mtd><mn></mn></mtd>
+         </mtr>
+         
+         <mtr>
+            <mtd><mn></mn></mtd>
+            <mtd><mn></mn></mtd>
+             <mtd><msub><mi>I</mi><mn>zz</mn></msub></mtd>
+         </mtr>
+      </mtable>
+      <mo>]</mo>
+   </mrow>
+        </math>
+        <br><br>
+        where:<br>
+        <i>I<sub>xx</sub> = <font size="4.5"> &#x222b<font size="2.5"><sub>m</sub> <font size="2.5">(y<sup>2</sup> + z<sup>2</sup>)dm</i><br>
+        <i>I<sub>yy</sub> = <font size="4.5"> &#x222b<font size="2.5"><sub>m</sub> <font size="2.5">(x<sup>2</sup> + z<sup>2</sup>)dm</i><br>
+        <i>I<sub>zz</sub> = <font size="4.5"> &#x222b<font size="2.5"><sub>m</sub> <font size="2.5">(x<sup>2</sup> + y<sup>2</sup>)dm</i></p>
+    <p> <u><font color="000000" size="3">Products of inertia</u></p>
+    <p> <font color="000000" size="2.5">Three-element vector with the [Iyz Izx Ixy] 
+        products of inertia specified relative to a frame with origin at the 
+        center of mass and axes parallel to the body frame 
+        located at the centroid of the bottom surface of the Rotor. 
+        The products of inertia are the off-diagonal elements of the inertia tensor<br><br>
+        <math>    
+   <mrow>
+      <mo>[</mo>
+      <mtable>
+         <mtr>
+             <mtd><mn></mn></mtd>
+             <mtd><msub><mi>I</mi><mn>xy</mn></msub></mtd>
+             <mtd><msub><mi>I</mi><mn>zx</mn></msub></mtd>
+         </mtr>
+         
+         <mtr>
+             <mtd><msub><mi>I</mi><mn>xy</mn></msub></mtd>
+             <mtd><mn></mn></mtd>
+             <mtd><msub><mi>I</mi><mn>yz</mn></msub></mtd>
+         </mtr>
+         
+         <mtr>
+             <mtd><msub><mi>I</mi><mn>zx</mn></msub></mtd>
+             <mtd><msub><mi>I</mi><mn>yz</mn></msub></mtd>
+             <mtd><mn></mn></mtd>
+         </mtr>
+      </mtable>
+      <mo>]</mo>
+   </mrow>
+        </math>
+        <br><br>
+        where:<br>
+        <i>I<sub>yz</sub> = <font size="4.5"> - &#x222b<font size="2.5"><sub>m</sub> <font size="2.5">yz dm</i><br>
+        <i>I<sub>zx</sub> = <font size="4.5"> - &#x222b<font size="2.5"><sub>m</sub> <font size="2.5">zx dm</i><br>
+        <i>I<sub>xy</sub> = <font size="4.5"> - &#x222b<font size="2.5"><sub>m</sub> <font size="2.5">xy dm</i><br></p>
+    <p> <font color="FF8800" size="4">Graphic</p>
+    <p> <font color="000000" size="3"><u>Fixed base color</u></p>
+    <p> <font color="000000" size="2.5">Color of the Fixed Base graphic 
+        under direct white light, specified as an [R G B] or [R G B A] vector 
+        on a 0–1 scale. An optional fourth element (A) specifies the color 
+        opacity on a scale of 0–1. Omitting the opacity element is equivalent 
+        to specifying a value of 1.</p>
+    <p> <font color="000000" size="3"><u>Rotor color</u></p>
+    <p> <font color="000000" size="2.5">Color of the Rotor graphic 
+        under direct white light, specified as an [R G B] or [R G B A] vector 
+        on a 0–1 scale. An optional fourth element (A) specifies the color 
+        opacity on a scale of 0–1. Omitting the opacity element is equivalent 
+        to specifying a value of 1.</p> 
+    <br>
+    <p>Copyright 2023 - 2024 The MathWorks, Inc.</p>
+</body></html>

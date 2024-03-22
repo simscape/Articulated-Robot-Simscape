@@ -57,9 +57,7 @@ end
 
 %%  Save trajectory to mat file
 disp('Done')
-% filename='robotTrajectoryConfig.mat';
-% m = matfile(filename, 'Writable', true);
 [filepath,~,~] = fileparts(mfilename('fullpath'));
-save([filepath '\robotTrajectoryConfig.mat'],'Stacking','-append');
-% m.Stacking.wayPointsStackingCustom = Stacking.wayPointsStackingCustom;
+save([filepath '/robotTrajectoryConfig.mat'],'Stacking','-append');
+
 end

@@ -17,10 +17,10 @@
 %% Model the Robot
 %
 % This section shows how to model a parametric articulated robot by using 
-% custom library blocks, such as <matlab:web('Link.html') Link>, 
-% <matlab:web('LLink.html') L-Link>, 
-% <matlab:web('RotatingBaseWithBracket.html') Rotating Base With Bracket>, 
-% and <matlab:web('TwoFingerGripper.html') Two Finger Gripper>.
+% custom library blocks, such as <matlab:web('Link.html','-new') Link>, 
+% <matlab:web('LLink.html','-new') L-Link>, 
+% <matlab:web('RotatingBaseWithBracket.html','-new') Rotating Base With Bracket>, 
+% and <matlab:web('TwoFingerGripper.html','-new') Two Finger Gripper>.
 %%
 %
 % <html><h3>Model the Robot Base</h3></html>
@@ -332,19 +332,19 @@
 % To know more about how to determine the actuator rating, see 
 % <matlab:open('ActuatorRatingWorkflow.mlx') Evaluate the Actuator Rating for an Articulated Robot>
 %
-% <https://www.mathworks.com/help/sm/ref/worldframe.html World Frame> — Adds 
+% <matlab:web('https://www.mathworks.com/help/sm/ref/worldframe.html','-new') World Frame> — Adds 
 % an inertial reference frame to the model.
 %
-% <https://www.mathworks.com/help/sm/ref/mechanismconfiguration.html Mechanism Configuration> 
+% <matlab:web('https://www.mathworks.com/help/sm/ref/mechanismconfiguration.html','-new') Mechanism Configuration> 
 % - Defines the gravitational constant in a model.
 %
-% <https://www.mathworks.com/help/simscape/ref/solverconfiguration.html Solver Configuration> 
+% <matlab:web('https://www.mathworks.com/help/simscape/ref/solverconfiguration.html','-new') Solver Configuration> 
 % — Sets Simscape local solver options such as types, tolerances, and time 
 % steps. This is the only required block in a model.
 %
-% <https://www.mathworks.com/help/sm/ref/revolutejoint.html Revolute Joint>
+% <matlab:web('https://www.mathworks.com/help/sm/ref/revolutejoint.html','-new') Revolute Joint>
 % -  Joint that has one rotational degree of freedom
 % 
-% <https://www.mathworks.com/help/sm/ref/rigidtransform.html Rigid Transform> 
+% <matlab:web('https://www.mathworks.com/help/sm/ref/rigidtransform.html','-new') Rigid Transform> 
 % - Rotates and translates bodies and other frames relative to each other.
 %

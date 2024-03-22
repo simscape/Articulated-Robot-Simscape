@@ -13,7 +13,7 @@ design process is generally iterative and can be time consuming. You can
 accelerate the development process by starting with a system-level analysis 
 to evaluate your options.
 
-[![View Articulated Robot Design with Simscape on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/Articulated-Robot-Simscape)
+[![View Articulated Robot Design with Simscape on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/161506-articulated-robot-design-with-simscape)
 
 [![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=simscape/Articulated-Robot-Simscape)
 

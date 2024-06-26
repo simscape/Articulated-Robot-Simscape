@@ -14,6 +14,7 @@ classdef ModelSimulationUnitTest < matlab.unittest.TestCase
             modelname = "StackingRobotModel";
             load_system(modelname)
             testCase.addTeardown(@()close_system(modelname, 0));
+            set_param(modelname,'SimMechanicsOpenEditorOnUpdate','off');
 
             % Simulate model
             sim(modelname);
@@ -26,6 +27,7 @@ classdef ModelSimulationUnitTest < matlab.unittest.TestCase
             modelname = "sm_abbIrb120_1_RawImport";
             load_system(modelname)
             testCase.addTeardown(@()close_system(modelname, 0));
+            set_param(modelname,'SimMechanicsOpenEditorOnUpdate','off');
 
             % Simulate model
             sim(modelname);
@@ -38,6 +40,7 @@ classdef ModelSimulationUnitTest < matlab.unittest.TestCase
             modelname = "ParametricRobotModel";
             load_system(modelname)
             testCase.addTeardown(@()close_system(modelname, 0));
+            set_param(modelname,'SimMechanicsOpenEditorOnUpdate','off');
 
             % Simulate model
             sim(modelname);
@@ -50,6 +53,7 @@ classdef ModelSimulationUnitTest < matlab.unittest.TestCase
             modelname = "ParametricRobotWithGripperPayloads";
             load_system(modelname)
             testCase.addTeardown(@()close_system(modelname, 0));
+            set_param(modelname,'SimMechanicsOpenEditorOnUpdate','off');
 
             % Simulate model
             sim(modelname);
@@ -62,6 +66,7 @@ classdef ModelSimulationUnitTest < matlab.unittest.TestCase
             modelname = "ParametricRobotWithMass";
             load_system(modelname)
             testCase.addTeardown(@()close_system(modelname, 0));
+            set_param(modelname,'SimMechanicsOpenEditorOnUpdate','off');
 
             % Simulate model
             sim(modelname);
@@ -74,6 +79,7 @@ classdef ModelSimulationUnitTest < matlab.unittest.TestCase
             modelname = "ActuatorRatingModel";
             load_system(modelname)
             testCase.addTeardown(@()close_system(modelname, 0));
+            set_param(modelname,'SimMechanicsOpenEditorOnUpdate','off');
 
             % Simulate model
             sim(modelname);
@@ -86,6 +92,7 @@ classdef ModelSimulationUnitTest < matlab.unittest.TestCase
             modelname = "StackingModel";
             load_system(modelname)
             testCase.addTeardown(@()close_system(modelname, 0));
+            set_param(modelname,'SimMechanicsOpenEditorOnUpdate','off');
 
             % Simulate model
             sim(modelname);
@@ -98,6 +105,7 @@ classdef ModelSimulationUnitTest < matlab.unittest.TestCase
             modelname = "TorqueControlConfig";
             load_system(modelname)
             testCase.addTeardown(@()close_system(modelname, 0));
+            set_param(modelname,'SimMechanicsOpenEditorOnUpdate','off');
      
             % Get simulation input object
             simIn = Simulink.SimulationInput(modelname);

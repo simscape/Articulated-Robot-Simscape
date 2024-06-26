@@ -68,6 +68,7 @@ classdef LLinkComponentTest < matlab.unittest.TestCase
             % Set connection configuration and inertia type
             set_param(test.blockpath, 'connConfigLLLink', connConfig, 'connConfigRLLink', connConfig);
             set_param(test.blockpath, 'inertiaType', inertiaType);
+            set_param(test.modelname,'SimMechanicsOpenEditorOnUpdate','off');
 
             % Verify
             test.verifyWarningFree(@()sim(test.modelname),...
@@ -82,7 +83,8 @@ classdef LLinkComponentTest < matlab.unittest.TestCase
             % Set custom parameters
             set_param(test.blockpath, 'linkRadius', '0.05');
             set_param(test.blockpath, 'member1TotalLength', '1');
-            set_param(test.blockpath, 'member2TotalLength', '0.8')
+            set_param(test.blockpath, 'member2TotalLength', '0.8');
+            set_param(test.modelname,'SimMechanicsOpenEditorOnUpdate','off');
 
             % Verify model simulates without warning
             test.verifyWarningFree(@()sim(test.modelname),...

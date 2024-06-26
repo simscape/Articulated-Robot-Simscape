@@ -67,6 +67,7 @@ classdef LinkComponentTest < matlab.unittest.TestCase
             % Set connection configuration and inertia type
             set_param(test.blockpath, 'connConfigL', connConfig, 'connConfigR', connConfig);
             set_param(test.blockpath, 'inertiaType', inertiaType);
+            set_param(test.modelname,'SimMechanicsOpenEditorOnUpdate','off');
 
             % Verify
             test.verifyWarningFree(@()sim(test.modelname),...
@@ -80,7 +81,8 @@ classdef LinkComponentTest < matlab.unittest.TestCase
 
             % Set custom parameters
             set_param(test.blockpath, 'linkRadius', '0.5');
-            set_param(test.blockpath, 'linkLength', '10')
+            set_param(test.blockpath, 'linkLength', '10');
+            set_param(test.modelname,'SimMechanicsOpenEditorOnUpdate','off');
 
             % Verify model simulates without warning
             test.verifyWarningFree(@()sim(test.modelname),...

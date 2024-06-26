@@ -60,6 +60,7 @@ classdef RotatingBaseWithBracketTest < matlab.unittest.TestCase
             % Set connection configuration and inertia type
             set_param(test.blockpath, 'connConfig', connConfig);
             set_param(test.blockpath, 'baseInertiaType', inertiaType, 'rotorInertiaType', inertiaType);
+            set_param(test.modelname,'SimMechanicsOpenEditorOnUpdate','off');
 
             test.verifyWarningFree(@()sim(test.modelname),...
                 ['The model with block- ''', test.blockname, ''' should simulate without any errors and/or warnings.']);
@@ -73,6 +74,7 @@ classdef RotatingBaseWithBracketTest < matlab.unittest.TestCase
             % Set custom parameters
             set_param(test.blockpath, 'baseRadius', '0.5');
             set_param(test.blockpath, 'baseTotalLength', '1.25');
+            set_param(test.modelname,'SimMechanicsOpenEditorOnUpdate','off');
 
             % Verify model simulates without warning
             test.verifyWarningFree(@()sim(test.modelname),...

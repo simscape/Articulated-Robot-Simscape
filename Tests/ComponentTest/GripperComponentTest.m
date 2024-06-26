@@ -46,7 +46,7 @@ classdef GripperComponentTest < matlab.unittest.TestCase
         function TestSimulationWithDefaultValues(test)
             % Test that the custom block simulates without any error or
             % warning for the default values.
-
+            set_param(test.modelname,'SimMechanicsOpenEditorOnUpdate','off');
             test.verifyWarningFree(@()sim(test.modelname),...
                 ['The model with block- ''', test.blockname, ''' should simulate without any errors and/or warnings.']);
 
@@ -61,6 +61,7 @@ classdef GripperComponentTest < matlab.unittest.TestCase
             set_param(test.blockpath, 'wFinger', '0.5');
             set_param(test.blockpath, 'sFingerMax', '0.5');
             set_param(test.blockpath, 'ptcldDensity', '6');
+            set_param(test.modelname,'SimMechanicsOpenEditorOnUpdate','off');
 
             % Verify model simulates without warning
             test.verifyWarningFree(@()sim(test.modelname),...

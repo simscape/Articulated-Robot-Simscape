@@ -1,14 +1,14 @@
 % Test runner for Articulated Robot Design With Simscape project
-   % The test runner sricpt for this project is used to create a test suite 
-   % that consists of test scripts in the 'Tests' folder. The runner runs 
-   % this test suite and generates output.
+% The test runner sricpt for this project is used to create a test suite 
+% that consists of test scripts in the 'Tests' folder. The runner runs 
+% this test suite and generates output.
 
 % Copyright 2023 - 2024 The MathWorks, Inc.
 
 relStr = matlabRelease().Release;
 disp("This is MATLAB " + relStr + ".");
 
-topFolder = currentProject().RootFolder;
+topFolder = currentProject().RootFolder; 
 
 %% Create test suite
 % Test suite for unit test
@@ -62,4 +62,4 @@ addPlugin(runner, codeCoveragePlugin);
 %% Run tests
 results = run(runner, suite);
 out = assertSuccess(results);
-disp(out);
+disp(out); 

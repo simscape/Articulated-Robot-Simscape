@@ -52,6 +52,6 @@ predict how the system performance depends on key design parameters
 ## Setup 
 * Clone the project repository.
 * Open ArticulatedRobotSimscape.prj to get started with the project. 
-* Requires MATLAB&reg; release R2023b or newer.
+* Requires MATLAB&reg; release R2024a or newer.
 
 Copyright 2023 - 2024 The MathWorks, Inc.

@@ -48,7 +48,8 @@ jobs:
         uses: matlab-actions/setup-matlab@v2
         with:
           release: R2024a
-          products: 
+          cache: true
+          products: >
             Simulink
             Simscape
             Simscape_Multibody

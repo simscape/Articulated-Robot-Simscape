@@ -28,7 +28,7 @@ library blocks or create your new custom blocks.
 
 <table>
   <tr>
-    <td class="image-column" width=400><img src="Overview/ArticulatedRobotDemoSimscape.mp4" alt="Create Building"></td>
+    <td class="image-column" width=1200 height=900><img src="Overview/ArticulatedRobotDemoSimscape.mp4" alt="Build robot"></td>
   </tr>
 </table>
 

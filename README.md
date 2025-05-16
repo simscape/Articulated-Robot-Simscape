@@ -26,11 +26,11 @@ create custom trajectories to see the robot trace a path as per your choice.
 To design your own articulated robot, you can leverage the existing custom 
 library blocks or create your new custom blocks.
 
-<table>
-  <tr>
-    <td class="image-column" width=1200 height=900><img src="Overview/ArticulatedRobotDemoSimscape.mp4" alt="Build robot"></td>
-  </tr>
-</table>
+
+
+https://github.com/user-attachments/assets/fbdf7069-5db1-4b17-aced-7299a947dad6
+
+
 
 The project contains custom library blocks such Link, L-Link, Rotating Base 
 With Bracket and Two Finger Gripper. The custom library blocks serve as 
